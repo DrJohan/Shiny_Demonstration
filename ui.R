@@ -1,0 +1,52 @@
+library(RCurl)
+library(shiny)
+
+# Read in google flu data from google website.
+# First we get information from the website URL using the RCurl package
+
+x <- getURL("https://www.google.org/flutrends/us/data.txt")
+
+
+# The data is stored in a .csv format, and
+# the first 10 lines of the data are a google disclaimer, so we remove them.
+#
+# This data file has a column for the date, and then separate columns for each location.  The column names
+# are the locations.
+google_data <- read.csv(text=x, header=T,  skip=10)
+
+# Next, we use the google_data to create a list of location names.  The location names are the names of the columns in our
+# data table.  We remove the first column, since it is the column for date, and is not a location.
+loc_names <- sort(names(google_data[,-1]))
+
+# Define the UI for the google flu trends plot demo
+shinyUI(fluidPage(
+  
+  #  Application title
+  titlePanel("Google Flu Trends"),
+  
+  # Gives the ui a layout with a control panel on the left side and a plot next to it
+  sidebarLayout(
+    
+    #Specify the contents of the control panel
+    sidebarPanel(
+      
+      # Allow user to choose the location they wish to view.  This will create a user input variable called "location".
+      # The choices =  sort(names(google_data)) option allows users to choose from any of the column names (locations) in our data file
+      selectInput("location", "Choose a location:", 
+                  choices = sort(names(google_data))),
+      
+      # Allow user to choose the range of dates they wish to plot.  This will create a user input variable called "dateRange",
+      # which will have two elements: dateRange[1] will provide the start date, and dateRange[2] will provide the end date.
+      
+      dateRangeInput('dateRange',
+                     label = 'Date range input: yyyy-mm-dd',
+                     start = "2013-08-01", end = Sys.Date() 
+      )
+    ),
+    
+    # Here we speicfy the plot to be shown to the user.  Our plot is called "google_plot", and is created in the server.R file
+    mainPanel(
+      plotOutput("google_plot")
+    )
+  )
+))
