@@ -27,7 +27,7 @@ shinyUI(fluidPage(
       # This will create a user input variable called "location".
       selectInput(inputId  = "location", 
                   label    = "Choose a location:", 
-                  choices  = sort(names(google_data)), 
+                  choices  = loc_names, 
                   selected = "Iowa"),
       
       # Allow user to choose the range of dates they wish to plot.  
