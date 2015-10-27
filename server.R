@@ -1,8 +1,9 @@
 library(shiny)
 library(dplyr)
 library(ggplot2)
+  
 
-google_data = read.csv(file   = "http://www.google.org/flutrends/us/data.txt", 
+google_data = read.csv(file   =  "http://www.google.org/flutrends/about/data/flu/us/data.txt", 
                        header = TRUE,       # Data contain headers
                        skip   = 10)         # Skip the first 10 lines
 

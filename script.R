@@ -1,10 +1,10 @@
 library(dplyr)
-
+library(ggplot2)
 # Read in google flu data from google website.
 # The data is stored in a .csv format (even though it is named .txt), and
 #
 # This data file has a column for the date, and then separate columns for each location.  
-google_data = read.csv(file        = "http://www.google.org/flutrends/us/data.txt", 
+google_data = read.csv(file        = "http://www.google.org/flutrends/about/data/flu/us/data.txt", 
                        header      = TRUE, 
                        skip        = 10)   # first 10 lines are google disclaimer
 

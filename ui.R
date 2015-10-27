@@ -2,7 +2,7 @@ library(shiny)
 
 
 
-google_data = read.csv(file   = "http://www.google.org/flutrends/us/data.txt", 
+google_data = read.csv(file   =  "http://www.google.org/flutrends/about/data/flu/us/data.txt", 
                        header = TRUE,       
                        skip   = 10) 
 
