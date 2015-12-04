@@ -1,7 +1,7 @@
 library(shiny)
 
 
-
+# Read in Google Flu Trends data from its website
 google_data = read.csv(file   =  "http://www.google.org/flutrends/about/data/flu/us/data.txt", 
                        header = TRUE,       
                        skip   = 10) 
@@ -35,7 +35,7 @@ shinyUI(fluidPage(
       dateRangeInput(inputId = 'dateRange',
                      label   = 'Date range input: yyyy-mm-dd',
                      start   = "2013-08-01", 
-                     end     = Sys.Date()) # use current date as end date
+                     end     = "2015-07-01") # Date when Google Flu Trends stopped providing data
     ),
     
     # Here we specify the plot to be shown to the user.  
