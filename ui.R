@@ -10,6 +10,9 @@ google_data = read.csv(file   =  "http://www.google.org/flutrends/about/data/flu
 # The location names are the names of the columns in our data table.  
 # We remove the first column, since it is the column for date, and is not a location.
 loc_names = sort(names(google_data[,-1]))
+loc_names = google_data[,-1] %>%
+  names() %>% 
+  sort()
 
 # Define the UI for the google flu trends plot demo
 shinyUI(fluidPage(
